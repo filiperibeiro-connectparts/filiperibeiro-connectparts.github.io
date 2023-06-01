@@ -45,6 +45,27 @@
       margin-right: 10px;
     }
   </style>
+  <script>
+    function mostrarAviso(event) {
+      event.preventDefault(); // Impede o comportamento padrão do link
+      
+      var confirmacao = confirm("Atenção - LEIA ANTES DE FAZER O DOWNLOAD!\n\nSe for a primeira vez que você está fazendo o download ou se as macros estiverem bloqueadas por questões de segurança do Windows, favor procurar o setor de BI Connect Parts.\n\nClique em 'OK' para confirmar e iniciar o download.");
+      
+      if (confirmacao) {
+        // O usuário confirmou a mensagem, redirecionar para o link de download
+        window.location.href = this.getAttribute("href");
+      }
+    }
+    
+    // Adicionando o evento de clique aos botões de download
+    window.addEventListener("load", function() {
+      var botoesDownload = document.getElementsByClassName("excel-button");
+      
+      for (var i = 0; i < botoesDownload.length; i++) {
+        botoesDownload[i].addEventListener("click", mostrarAviso);
+      }
+    });
+  </script>
 </head>
 <body>
   <h2>Segue link de acesso para planilhas de Desempenho das Categorias:</h2>
